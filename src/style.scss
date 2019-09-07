@@ -1,0 +1,246 @@
+$primary: #6E7C47;
+$secondary: #F5FFDB;
+$yellow: #E1FF8F;
+
+body {
+	margin: 0;
+	font-family: 'El Messiri', sans-serif;
+	color: $primary;
+	background-color: $secondary;
+	font-size: 22px;
+}
+
+input, button {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	color: inherit;
+}
+button, input[type="submit"] {
+	cursor: pointer;
+	user-select: none;
+}
+
+.todo__input, .todo__header, .todo__info, br {
+	&::selection {
+		color: $yellow;
+		background-color: $primary;
+	}
+}
+
+a::selection {
+	color: white;
+	background-color: $primary;
+}
+
+%input {
+	outline: none;
+	border: none;
+	vertical-align: middle;
+}
+
+.todo {
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	&__header {
+		font-size: 50px;
+		text-align: center;
+	}
+
+	&__form {
+		width: 100%;
+		position: relative;
+		display: flex;
+		margin-bottom: 20px;
+	}
+
+	%forminput {
+		height: 50px;
+		line-height: 50px;
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	&__input {
+		@extend %input;
+		@extend %forminput;
+		flex-grow: 1;
+		padding-left: 42px;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+		&::placeholder {
+			color: rgba($primary, 0.2);
+			user-select: none;
+		}
+		transition: box-shadow 0.3s;
+		&:focus {
+			box-shadow: 0 0 3px 1px $yellow;
+		}
+	}
+
+	&__submit {
+		@extend %input;
+		@extend %forminput;
+		background-color: $yellow;
+		padding: 0 20px;
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+		transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+		&:hover {
+			background-color: #B2D357;;
+		}
+		&:focus {
+			box-shadow: 0 0 0 2px $primary;
+		}
+		&:active {
+			box-shadow: 0 0 0 2px $primary;
+		}
+	}
+
+	&__compliteAll {
+		@extend %input;
+		@extend %forminput;
+		position: absolute;
+		top: 2px;
+		left: 5px;
+		color: rgba($primary, 0.3);
+		background-color: transparent;
+		&.active {
+			color: $primary;
+		}
+	}
+
+	&__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		margin-bottom: 20px;
+	}
+
+	&__item {
+		display: flex;
+		position: relative;
+		margin-bottom: 3px;
+		min-height: 45px;
+		line-height: 45px;
+		background-color: $yellow;
+		&:hover .todo__item-close {
+			display: block;
+		}
+		&.complited {
+			background-color: rgba($yellow, 0.3);
+			.todo__item-span {
+				text-decoration: line-through;
+			}
+			.todo__item-change {
+				color: rgba($primary, 0.3);
+			}
+		}
+	}
+
+	&__item-change {
+		@extend %input;
+		position: absolute;
+		background-color: transparent;
+		height: 40px;
+		line-height: 40px;
+		top: 2px;
+		left: 5px;
+	}
+
+	&__item-span {
+		flex-grow: 1;
+		padding-left: 50px;
+		max-width: calc(100% - 90px);
+		overflow: hidden;
+		user-select: none;
+	}
+
+	&__item-input {
+		@extend %input;
+		padding-top: 0;
+		padding-bottom: 0;
+		width: 100%;
+		padding-left: 50px;
+		padding-right: 40px;
+	}
+
+	&__item-close {
+		display: none;
+		@extend %input;
+		position: absolute;
+		top: 12px;
+		right: 5px;
+		height: 26px;
+		line-height: 26px;
+		font-size: 30px;
+		font-weight: bold;
+		color: #D88A8A;
+		background-color: transparent;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px;
+		color: white;
+		background-color: $primary;
+		border-bottom-left-radius: 12px;
+		border-bottom-right-radius: 12px;
+	}
+	
+	&__footer-view {
+		@extend %input;
+		font-size: 16px;
+		background-color: transparent;
+		vertical-align: baseline;
+		padding-top: 2px;
+		margin-left: 5px;
+		margin-right: 5px;
+		border: 1px solid transparent;
+		border-radius: 5px;
+		transition: color 0.3s, border 0.3s;
+		&:hover {
+			color: rgba($yellow, 0.5);
+			border: 1px solid rgba($yellow, 0.5);
+		}
+		&.active {
+			color: rgba($yellow, 0.5);
+			border: 1px solid rgba($yellow, 0.5);
+		}
+	}
+	&__removeComplited {
+		@extend %input;
+		font-size: 16px;
+		background-color: transparent;
+		vertical-align: baseline;
+		transition: color 0.3s;
+		&:hover {
+			color: rgba($yellow, 0.5);
+		}
+		&.invisible {
+			visibility: hidden;
+		}
+	}
+
+	&__count {
+		display: inline-block;
+		font-size: 16px;
+		min-width: 100px;
+		user-select: none;
+	}
+
+	&__info {
+		color: rgba($primary, 0.5);
+		font-size: 14px;
+		text-align: center;
+		a {
+			color: $primary;
+		}
+	}
+}
