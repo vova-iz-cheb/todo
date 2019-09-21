@@ -168,6 +168,7 @@ a::selection {
     min-width: 100px;
     user-select: none; }
   .todo__info {
+    margin-top: 20px;
     color: rgba(110, 124, 71, 0.5);
     font-size: 14px;
     text-align: center; }
